@@ -62,14 +62,14 @@
 
   @media (prefers-color-scheme: dark) {
     :root {
-      /* Dark mode - bright shiny gold on black */
+      /* Dark mode - metallic shiny gold (#BB891D) on black */
       --background: 8 10 14;
       --foreground: 255 255 255;
-      --primary: 242 222 122;      /* Bright shiny gold for dark mode */
-      --primary-light: 255 240 160;
-      --accent: 242 222 122;       /* Bright shiny gold */
-      --accent-light: 255 240 160; /* Lighter variant */
-      --accent-dark: 174 124 43;   /* Dark rich gold */
+      --primary: 187 137 29;       /* Shiny metallic gold (#BB891D) for dark mode */
+      --primary-light: 210 160 50; /* Lighter gold variant */
+      --accent: 187 137 29;        /* Shiny metallic gold */
+      --accent-light: 210 160 50;  /* Lighter variant */
+      --accent-dark: 150 110 20;   /* Darker shade for hover states */
       --border: 22 27 38;
       --surface: 12 15 22;
       --muted: 124 128 138;
@@ -78,8 +78,8 @@
       /* Legacy dark mode colors */
       --ink-rgb: 8 10 14;
       --cream-rgb: 255 255 255;
-      --gold-rgb: 242 222 122;
-      --gold-light-rgb: 255 240 160;
+      --gold-rgb: 187 137 29;
+      --gold-light-rgb: 210 160 50;
       --surface-0-rgb: 9 11 16;
       --surface-1-rgb: 12 15 22;
       --surface-2-rgb: 16 20 28;
@@ -354,24 +354,24 @@
     color-scheme: dark;
     --background: 8 10 14;
     --foreground: 255 255 255;
-    --primary: 242 222 122;
-    --primary-light: 255 240 160;
-    --accent: 242 222 122;
-    --accent-light: 255 240 160;
-    --accent-dark: 174 124 43;
+    --primary: 187 137 29;
+    --primary-light: 210 160 50;
+    --accent: 187 137 29;
+    --accent-light: 210 160 50;
+    --accent-dark: 150 110 20;
     --border: 22 27 38;
     --surface: 12 15 22;
     --muted: 124 128 138;
     --muted-light: 22 27 38;
-    --gold-rgb: 242 222 122;
-    --gold-light-rgb: 255 240 160;
+    --gold-rgb: 187 137 29;
+    --gold-light-rgb: 210 160 50;
     --ink-rgb: 8 10 14;
     --cream-rgb: 255 255 255;
   }
   
   html.dark body {
     background:
-      radial-gradient(120% 120% at 50% -20%, rgb(242 222 122 / 0.08), transparent 55%),
+      radial-gradient(120% 120% at 50% -20%, rgb(187 137 29 / 0.08), transparent 55%),
       linear-gradient(180deg, rgb(var(--surface)), rgb(var(--background)));
     color: rgb(var(--foreground));
   }
