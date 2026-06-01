@@ -30,34 +30,34 @@
 
   :root {
     color-scheme: light;
-    /* Shiny gold palette - #F2DE7A (bright), #AE7C2B (dark) */
-    --gold-bright: 242 222 122;   /* #F2DE7A - Bright shiny gold */
-    --gold-dark: 174 124 43;      /* #AE7C2B - Dark rich gold */
+    /* Shiny metallic gold palette - #BB891D (primary), #D2A052 (light) */
+    --gold-primary: 187 137 29;   /* #BB891D - Shiny metallic gold */
+    --gold-light: 210 160 50;     /* #D2A052 - Light gold variant */
     
-    /* Light mode */
+    /* Light mode - White and Golden combination */
     --background: 255 255 255;
-    --foreground: 20 20 20;
-    --primary: 174 124 43;        /* Dark rich gold for light mode */
-    --primary-light: 242 222 122; /* Bright shiny gold */
-    --accent: 174 124 43;         /* Dark rich gold accent for light mode */
-    --accent-light: 242 222 122;  /* Bright shiny gold */
-    --accent-dark: 139 99 35;     /* Darker shade for hover states */
-    --border: 226 232 240;
-    --surface: 248 250 252;
-    --muted: 120 120 120;
-    --muted-light: 226 232 240;
+    --foreground: 187 137 29;     /* Primary shiny metallic gold for text */
+    --primary: 187 137 29;        /* Shiny metallic gold (#BB891D) */
+    --primary-light: 210 160 50;  /* Light gold variant */
+    --accent: 187 137 29;         /* Shiny metallic gold accent */
+    --accent-light: 210 160 50;   /* Light gold accent */
+    --accent-dark: 150 110 20;    /* Darker shade for hover states */
+    --border: 187 137 29;         /* Golden borders */
+    --surface: 255 255 255;       /* White surfaces */
+    --muted: 187 137 29;          /* Golden muted text */
+    --muted-light: 210 160 50;    /* Light gold muted */
     
     /* Legacy color vars for component compatibility */
-    --gold-rgb: 174 124 43;
-    --gold-light-rgb: 242 222 122;
-    --gold-dark-rgb: 139 99 35;
-    --ink-rgb: 20 20 20;
+    --gold-rgb: 187 137 29;
+    --gold-light-rgb: 210 160 50;
+    --gold-dark-rgb: 150 110 20;
+    --ink-rgb: 187 137 29;
     --cream-rgb: 255 255 255;
-    --muted-rgb: 120 120 120;
-    --surface-0-rgb: 248 250 252;
-    --surface-1-rgb: 241 245 249;
-    --surface-2-rgb: 226 232 240;
-    --surface-3-rgb: 209 213 219;
+    --muted-rgb: 187 137 29;
+    --surface-0-rgb: 255 255 255;
+    --surface-1-rgb: 255 255 255;
+    --surface-2-rgb: 245 240 235;
+    --surface-3-rgb: 235 230 225;
   }
 
   @media (prefers-color-scheme: dark) {
@@ -324,28 +324,28 @@
     transition: background-color 0.3s ease, color 0.3s ease;
   }
   
-  /* Light mode explicit */
+  /* Light mode explicit - White and Golden combination */
   html.light {
     color-scheme: light;
     --background: 255 255 255;
-    --foreground: 20 20 20;
-    --primary: 174 124 43;
-    --primary-light: 242 222 122;
-    --accent: 174 124 43;
-    --accent-light: 242 222 122;
-    --accent-dark: 139 99 35;
-    --border: 226 232 240;
-    --surface: 248 250 252;
-    --muted: 120 120 120;
-    --muted-light: 226 232 240;
-    --gold-rgb: 174 124 43;
-    --gold-light-rgb: 242 222 122;
-    --ink-rgb: 20 20 20;
+    --foreground: 187 137 29;
+    --primary: 187 137 29;
+    --primary-light: 210 160 50;
+    --accent: 187 137 29;
+    --accent-light: 210 160 50;
+    --accent-dark: 150 110 20;
+    --border: 187 137 29;
+    --surface: 255 255 255;
+    --muted: 187 137 29;
+    --muted-light: 210 160 50;
+    --gold-rgb: 187 137 29;
+    --gold-light-rgb: 210 160 50;
+    --ink-rgb: 187 137 29;
     --cream-rgb: 255 255 255;
   }
   
   html.light body {
-    background: linear-gradient(135deg, rgb(255 255 255), rgb(248 250 252));
+    background: linear-gradient(135deg, rgb(255 255 255), rgb(255 255 255));
     color: rgb(var(--foreground));
   }
   
@@ -381,15 +381,16 @@
     color: rgb(var(--foreground));
   }
   
-  /* Light mode hero and section overrides */
+  /* Light mode hero and section overrides - white background with golden text */
   html.light section:first-of-type {
-    background: linear-gradient(135deg, rgb(248 250 252), rgb(255 255 255)) !important;
+    background: linear-gradient(135deg, rgb(255 255 255), rgb(255 255 255)) !important;
   }
   
   html.light section:first-of-type > div {
     background: transparent !important;
   }
   
+  /* All text in light mode uses golden color */
   html.light .text-cream {
     color: rgb(var(--foreground)) !important;
   }
@@ -406,8 +407,12 @@
     color: rgb(var(--foreground) / 0.9) !important;
   }
   
+  html.light .text-cream\/75 {
+    color: rgb(var(--foreground) / 0.75) !important;
+  }
+  
   html.light .text-gradient-gold {
-    background: linear-gradient(135deg, rgb(174 134 37) 20%, rgb(210 172 71) 55%, rgb(174 134 37) 90%);
+    background: linear-gradient(135deg, rgb(187 137 29) 20%, rgb(210 160 50) 55%, rgb(187 137 29) 90%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -416,6 +421,15 @@
   /* Override hero gradient backgrounds in light mode */
   html.light [class*="absolute"][class*="inset-0"] {
     background: transparent !important;
+  }
+  
+  /* Light mode - all headings and body text in golden */
+  html.light h1, html.light h2, html.light h3, html.light h4, html.light h5, html.light h6 {
+    color: rgb(var(--foreground)) !important;
+  }
+  
+  html.light p, html.light span, html.light div {
+    color: rgb(var(--foreground)) !important;
   }
   
   /* Dark mode explicit */
