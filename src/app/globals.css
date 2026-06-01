@@ -11,12 +11,13 @@
 }
 
 @layer utilities {
-  h1.font-cinzel,
-  h2.font-cinzel,
-  .font-shubiq-heading {
-    font-family: "Algerian", var(--font-cinzel-decorative), var(--font-cinzel), serif !important;
-    font-weight: 400 !important;
-    font-style: normal !important;
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-poppins), sans-serif !important;
+    font-weight: 700 !important;
+  }
+  
+  body, p, span, div, a, button {
+    font-family: var(--font-inter), sans-serif !important;
   }
 }
 
@@ -28,16 +29,54 @@
   }
 
   :root {
+    color-scheme: light;
+    --background: 255 255 255;
+    --foreground: 15 23 43;
+    --primary: 20 71 230;
+    --primary-light: 59 130 246;
+    --accent: 196 164 88;
+    --accent-light: 224 195 129;
+    --accent-dark: 119 94 45;
+    --border: 226 232 240;
+    --surface: 248 250 252;
+    --muted: 148 163 184;
+    --muted-light: 226 232 240;
+    
+    /* Legacy color vars for component compatibility */
     --gold-rgb: 196 164 88;
     --gold-light-rgb: 224 195 129;
     --gold-dark-rgb: 119 94 45;
-    --ink-rgb: 8 10 14;
-    --cream-rgb: 233 230 222;
-    --muted-rgb: 124 128 138;
-    --surface-0-rgb: 9 11 16;
-    --surface-1-rgb: 12 15 22;
-    --surface-2-rgb: 16 20 28;
-    --surface-3-rgb: 22 27 38;
+    --ink-rgb: 15 23 43;
+    --cream-rgb: 255 255 255;
+    --muted-rgb: 148 163 184;
+    --surface-0-rgb: 248 250 252;
+    --surface-1-rgb: 241 245 249;
+    --surface-2-rgb: 226 232 240;
+    --surface-3-rgb: 209 213 219;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --background: 8 10 14;
+      --foreground: 233 230 222;
+      --primary: 196 164 88;
+      --primary-light: 224 195 129;
+      --accent: 196 164 88;
+      --accent-light: 224 195 129;
+      --accent-dark: 119 94 45;
+      --border: 22 27 38;
+      --surface: 12 15 22;
+      --muted: 124 128 138;
+      --muted-light: 22 27 38;
+      
+      /* Legacy dark mode colors */
+      --ink-rgb: 8 10 14;
+      --cream-rgb: 233 230 222;
+      --surface-0-rgb: 9 11 16;
+      --surface-1-rgb: 12 15 22;
+      --surface-2-rgb: 16 20 28;
+      --surface-3-rgb: 22 27 38;
+    }
   }
 
   :root[data-theme="cobalt"] {
@@ -263,21 +302,92 @@
 
   html {
     scroll-behavior: smooth;
-    font-size: 18px;
+    font-size: 16px;
   }
 
   body {
-    background:
-      radial-gradient(120% 120% at 50% -20%, rgb(var(--gold-rgb) / 0.05), transparent 55%),
-      linear-gradient(180deg, rgb(var(--surface-0-rgb)), rgb(var(--ink-rgb)));
-    color: rgb(var(--cream-rgb));
+    background: rgb(var(--background));
+    color: rgb(var(--foreground));
     -webkit-font-smoothing: antialiased;
-    line-height: 1.55;
-    font-size: 20px;
+    -moz-osx-font-smoothing: grayscale;
+    line-height: 1.6;
+    font-size: 16px;
+    font-weight: 400;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  /* Light mode explicit */
+  html.light {
+    color-scheme: light;
+    --background: 255 255 255;
+    --foreground: 15 23 43;
+    --primary: 20 71 230;
+    --primary-light: 59 130 246;
+    --accent: 196 164 88;
+    --accent-light: 224 195 129;
+    --accent-dark: 119 94 45;
+    --border: 226 232 240;
+    --surface: 248 250 252;
+    --muted: 148 163 184;
+    --muted-light: 226 232 240;
+  }
+  
+  html.light body {
+    background: linear-gradient(135deg, rgb(255 255 255), rgb(248 250 252));
+  }
+  
+  /* Dark mode explicit */
+  html.dark {
+    color-scheme: dark;
+    --background: 8 10 14;
+    --foreground: 233 230 222;
+    --primary: 196 164 88;
+    --primary-light: 224 195 129;
+    --accent: 196 164 88;
+    --accent-light: 224 195 129;
+    --accent-dark: 119 94 45;
+    --border: 22 27 38;
+    --surface: 12 15 22;
+    --muted: 124 128 138;
+    --muted-light: 22 27 38;
+  }
+  
+  html.dark body {
+    background:
+      radial-gradient(120% 120% at 50% -20%, rgb(var(--accent) / 0.08), transparent 55%),
+      linear-gradient(180deg, rgb(var(--surface)), rgb(var(--background)));
   }
 
   p {
-    font-size: 19px !important;
+    font-size: 16px !important;
+    line-height: 1.68 !important;
+    font-weight: 400 !important;
+  }
+  
+  h1 {
+    font-size: clamp(32px, 5vw, 56px);
+    line-height: 1.2;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+  
+  h2 {
+    font-size: clamp(28px, 4vw, 44px);
+    line-height: 1.25;
+    font-weight: 700;
+    letter-spacing: -0.015em;
+  }
+  
+  h3 {
+    font-size: clamp(22px, 3vw, 32px);
+    line-height: 1.3;
+    font-weight: 700;
+  }
+  
+  h4, h5, h6 {
+    font-size: 18px;
+    line-height: 1.4;
+    font-weight: 600;
   }
 
   ::-webkit-scrollbar { width: 2px; }
@@ -395,23 +505,33 @@
   }
 
   #about {
-    scroll-margin-top: 54px;
+    scroll-margin-top: 64px;
+    padding-top: 6rem;
+    padding-bottom: 6rem;
   }
 
   #services {
-    scroll-margin-top: 54px;
+    scroll-margin-top: 64px;
+    padding-top: 6rem;
+    padding-bottom: 6rem;
   }
 
   #projects {
-    scroll-margin-top: 54px;
+    scroll-margin-top: 64px;
+    padding-top: 6rem;
+    padding-bottom: 6rem;
   }
 
   #ecosystem {
-    scroll-margin-top: 54px;
+    scroll-margin-top: 64px;
+    padding-top: 6rem;
+    padding-bottom: 6rem;
   }
 
   #contact {
-    scroll-margin-top: 54px;
+    scroll-margin-top: 64px;
+    padding-top: 6rem;
+    padding-bottom: 6rem;
   }
 
   #about .about-container {
@@ -419,30 +539,50 @@
     max-width: 1400px;
     margin: 0 auto;
   }
+  
+  @media (max-width: 640px) {
+    #about, #services, #projects, #ecosystem, #contact {
+      padding-top: 3rem;
+      padding-bottom: 3rem;
+    }
+  }
 }
 
 @layer utilities {
-  .font-cinzel    { font-family: var(--font-cinzel), serif; }
-  .font-cormorant { font-family: var(--font-cormorant), serif; }
-  .font-rajdhani  { font-family: var(--font-rajdhani), sans-serif; }
-  .font-orbitron  { font-family: var(--font-orbitron), sans-serif; }
+  .font-inter     { font-family: var(--font-inter), sans-serif; }
+  .font-poppins   { font-family: var(--font-poppins), sans-serif; }
+  
+  /* Legacy font aliases for compatibility */
+  .font-cinzel    { font-family: var(--font-poppins), sans-serif; }
+  .font-cormorant { font-family: var(--font-inter), sans-serif; }
+  .font-rajdhani  { font-family: var(--font-inter), sans-serif; }
+  .font-orbitron  { font-family: var(--font-poppins), sans-serif; }
 
   .cv-auto {
     content-visibility: auto;
     contain-intrinsic-size: 900px 1000px;
   }
 
-  .text-gold       { color: rgb(var(--gold-rgb)); }
-  .text-gold-light { color: rgb(var(--gold-light-rgb)); }
-  .text-cream      { color: rgb(var(--cream-rgb)); }
-  .text-ink        { color: rgb(var(--ink-rgb)); }
-  .bg-ink          { background: rgb(var(--surface-0-rgb)); }
-  .bg-gold         { background: rgb(var(--gold-rgb)); }
-  .bg-gold-light   { background: rgb(var(--gold-light-rgb)); }
-  .border-gold     { border-color: rgb(var(--gold-rgb)); }
-  .bg-surface-1    { background: rgb(var(--surface-1-rgb)); }
-  .bg-surface-2    { background: rgb(var(--surface-2-rgb)); }
-  .bg-surface-3    { background: rgb(var(--surface-3-rgb)); }
+  /* Semantic colors */
+  .bg-background   { background: rgb(var(--background)); }
+  .bg-foreground   { background: rgb(var(--foreground)); }
+  .text-foreground { color: rgb(var(--foreground)); }
+  .text-muted      { color: rgb(var(--muted)); }
+  .bg-surface      { background: rgb(var(--surface)); }
+  .border-border   { border-color: rgb(var(--border)); }
+  
+  /* Legacy colors for component compatibility */
+  .text-gold       { color: rgb(var(--accent)); }
+  .text-gold-light { color: rgb(var(--accent-light)); }
+  .text-cream      { color: rgb(var(--foreground)); }
+  .text-ink        { color: rgb(var(--foreground)); }
+  .bg-ink          { background: rgb(var(--surface)); }
+  .bg-gold         { background: rgb(var(--accent)); }
+  .bg-gold-light   { background: rgb(var(--accent-light)); }
+  .border-gold     { border-color: rgb(var(--accent)); }
+  .bg-surface-1    { background: rgb(var(--surface)); }
+  .bg-surface-2    { background: rgb(var(--muted-light)); }
+  .bg-surface-3    { background: rgb(var(--muted-light) / 0.5); }
   .bg-card-soft {
     background:
       radial-gradient(90% 120% at 12% 0%, rgb(var(--gold-rgb) / 0.025), transparent 62%),

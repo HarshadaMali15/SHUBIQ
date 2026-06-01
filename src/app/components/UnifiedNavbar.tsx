@@ -21,31 +21,31 @@ export default function UnifiedNavbar() {
   const [menuOpen, setMenuOpen] = useState(false)
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-[9999] border-b border-[rgb(var(--gold-rgb)/0.18)] bg-[linear-gradient(to_bottom,rgb(var(--surface-2-rgb)/0.94),rgb(var(--surface-1-rgb)/0.86))] backdrop-blur-xl">
-      <div className="mx-auto flex h-[68px] w-full max-w-7xl items-center justify-between px-5 sm:px-8 lg:px-12">
-        <Link href="/" className="group flex items-center gap-2" onClick={() => setMenuOpen(false)}>
+    <header className="site-navbar fixed top-0 left-0 right-0 z-[9999] border-b border-border bg-background/95 backdrop-blur-md transition-colors duration-300 dark:border-border dark:bg-background/90">
+      <div className="mx-auto flex h-16 w-full max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+        <Link href="/" className="group flex items-center gap-3" onClick={() => setMenuOpen(false)}>
           <Image
             src="/nexgravision-logo.png"
             alt="NexGravision"
-            width={44}
-            height={44}
+            width={40}
+            height={40}
             priority
-            className="h-9 w-9 object-contain transition-transform duration-200 group-hover:scale-[1.03]"
+            className="h-10 w-10 object-contain transition-transform duration-300 group-hover:scale-105"
           />
-          <span className="font-cinzel text-[21px] tracking-[1px] text-cream/92 transition-colors group-hover:text-[rgb(var(--gold-light-rgb))]">
+          <span className="site-navbar-title font-poppins text-lg font-bold tracking-tight text-foreground transition-colors group-hover:text-accent hidden sm:inline">
             NexGravision
           </span>
         </Link>
 
-        <nav className="hidden lg:flex items-center gap-5 xl:gap-7">
+        <nav className="site-navbar-nav hidden lg:flex items-center gap-8">
           {LINKS.map((link) => {
             const active = pathname === link.href || (link.href !== "/" && pathname.startsWith(link.href))
             return (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`font-rajdhani text-[12px] uppercase tracking-[2.6px] transition-colors ${
-                  active ? "text-[rgb(var(--gold-light-rgb))]" : "text-cream/72 hover:text-[rgb(var(--gold-light-rgb))]"
+                className={`site-nav-link font-inter text-sm font-medium transition-colors duration-200 ${
+                  active ? "text-accent" : "text-foreground/70 hover:text-foreground"
                 }`}
               >
                 {link.label}
@@ -54,23 +54,23 @@ export default function UnifiedNavbar() {
           })}
         </nav>
 
-        <div className="flex items-center gap-2 sm:gap-3">
+        <div className="flex items-center gap-3">
           <ThemeToggle />
           <button
             type="button"
             onClick={() => setMenuOpen((v) => !v)}
-            className="lg:hidden inline-flex h-10 w-10 items-center justify-center rounded-full border border-[rgb(var(--gold-rgb)/0.42)] bg-[linear-gradient(145deg,rgb(var(--surface-2-rgb)/0.95),rgb(var(--surface-1-rgb)/0.9))] text-cream/85 shadow-[0_0_0_1px_rgb(var(--gold-rgb)/0.08)_inset]"
+            className="site-menu-btn lg:hidden inline-flex h-10 w-10 items-center justify-center rounded-lg border border-border bg-surface text-foreground transition-colors hover:bg-muted/20"
             aria-label="Toggle menu"
             aria-expanded={menuOpen}
           >
             <span className="sr-only">Menu</span>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               {menuOpen ? <path d="M18 6 6 18M6 6l12 12" /> : <path d="M4 7h16M4 12h16M4 17h16" />}
             </svg>
           </button>
           <Link
             href="/#contact"
-            className="labs-sheen-btn hidden lg:inline-flex items-center rounded-full border border-[rgb(var(--gold-rgb)/0.68)] bg-[rgb(var(--gold-rgb))] px-3 sm:px-4 py-2 font-rajdhani text-[9px] sm:text-[10px] uppercase tracking-[2.1px] sm:tracking-[2.4px] text-[rgb(var(--ink-rgb))] transition-colors hover:bg-[rgb(var(--gold-light-rgb))]"
+            className="site-nav-cta hidden lg:inline-flex items-center rounded-lg bg-accent px-6 py-2.5 font-poppins text-sm font-semibold text-foreground transition-all duration-200 hover:bg-accent-light hover:shadow-lg"
             onClick={() => setMenuOpen(false)}
           >
             Start Project
@@ -85,9 +85,9 @@ export default function UnifiedNavbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.2 }}
-            className="lg:hidden border-t border-[rgb(var(--gold-rgb)/0.16)] bg-[rgb(var(--surface-2-rgb)/0.96)] px-4 pb-4 pt-3"
+            className="lg:hidden border-t border-border bg-surface/95 backdrop-blur-md px-4 py-4"
           >
-            <nav className="grid grid-cols-2 gap-2">
+            <nav className="grid grid-cols-2 gap-3 mb-4">
               {LINKS.map((link) => {
                 const active = pathname === link.href || (link.href !== "/" && pathname.startsWith(link.href))
                 return (
@@ -95,10 +95,10 @@ export default function UnifiedNavbar() {
                     key={link.href}
                     href={link.href}
                     onClick={() => setMenuOpen(false)}
-                    className={`rounded-lg border px-3 py-2 text-center font-rajdhani text-[11px] uppercase tracking-[2px] ${
+                    className={`rounded-lg border px-4 py-2.5 text-center font-inter text-sm font-medium transition-colors ${
                       active
-                        ? "border-[rgb(var(--gold-rgb)/0.5)] bg-[rgb(var(--gold-rgb)/0.14)] text-[rgb(var(--gold-light-rgb))]"
-                        : "border-[rgb(var(--cream-rgb)/0.14)] text-cream/74"
+                        ? "border-accent bg-accent/10 text-accent"
+                        : "border-border text-foreground/70 hover:text-foreground"
                     }`}
                   >
                     {link.label}
@@ -109,7 +109,7 @@ export default function UnifiedNavbar() {
             <Link
               href="/#contact"
               onClick={() => setMenuOpen(false)}
-              className="mt-2 inline-flex w-full items-center justify-center rounded-full border border-[rgb(var(--gold-rgb)/0.68)] bg-[rgb(var(--gold-rgb))] px-4 py-2.5 font-rajdhani text-[10px] uppercase tracking-[2.2px] text-[rgb(var(--ink-rgb))]"
+              className="inline-flex w-full items-center justify-center rounded-lg bg-accent px-4 py-3 font-poppins text-sm font-semibold text-foreground transition-all hover:bg-accent-light hover:shadow-md"
             >
               Start Project
             </Link>
