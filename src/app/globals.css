@@ -30,29 +30,27 @@
 
   :root {
     color-scheme: light;
-    /* Golden palette - #AE8625, #D2AC47, #EDC967, #F7EF8A */
-    --gold-dark: 174 134 37;      /* #AE8625 - Dark gold for light mode */
-    --gold-medium: 210 172 71;    /* #D2AC47 - Medium gold */
-    --gold-bright: 237 201 103;   /* #EDC967 - Bright gold for dark mode */
-    --gold-light: 247 239 138;    /* #F7EF8A - Light gold */
+    /* Shiny gold palette - #F2DE7A (bright), #AE7C2B (dark) */
+    --gold-bright: 242 222 122;   /* #F2DE7A - Bright shiny gold */
+    --gold-dark: 174 124 43;      /* #AE7C2B - Dark rich gold */
     
     /* Light mode */
     --background: 255 255 255;
     --foreground: 20 20 20;
-    --primary: 174 134 37;        /* Dark gold for light mode */
-    --primary-light: 210 172 71;  /* Medium gold */
-    --accent: 174 134 37;         /* Dark gold accent for light mode */
-    --accent-light: 210 172 71;   /* Medium gold */
-    --accent-dark: 119 94 45;
+    --primary: 174 124 43;        /* Dark rich gold for light mode */
+    --primary-light: 242 222 122; /* Bright shiny gold */
+    --accent: 174 124 43;         /* Dark rich gold accent for light mode */
+    --accent-light: 242 222 122;  /* Bright shiny gold */
+    --accent-dark: 139 99 35;     /* Darker shade for hover states */
     --border: 226 232 240;
     --surface: 248 250 252;
     --muted: 120 120 120;
     --muted-light: 226 232 240;
     
     /* Legacy color vars for component compatibility */
-    --gold-rgb: 174 134 37;
-    --gold-light-rgb: 210 172 71;
-    --gold-dark-rgb: 119 94 45;
+    --gold-rgb: 174 124 43;
+    --gold-light-rgb: 242 222 122;
+    --gold-dark-rgb: 139 99 35;
     --ink-rgb: 20 20 20;
     --cream-rgb: 255 255 255;
     --muted-rgb: 120 120 120;
@@ -64,14 +62,14 @@
 
   @media (prefers-color-scheme: dark) {
     :root {
-      /* Dark mode - bright gold on black */
+      /* Dark mode - bright shiny gold on black */
       --background: 8 10 14;
       --foreground: 255 255 255;
-      --primary: 237 201 103;      /* Bright gold for dark mode */
-      --primary-light: 247 239 138;
-      --accent: 210 172 71;        /* Medium gold */
-      --accent-light: 237 201 103; /* Bright gold */
-      --accent-dark: 174 134 37;   /* Dark gold */
+      --primary: 242 222 122;      /* Bright shiny gold for dark mode */
+      --primary-light: 255 240 160;
+      --accent: 242 222 122;       /* Bright shiny gold */
+      --accent-light: 255 240 160; /* Lighter variant */
+      --accent-dark: 174 124 43;   /* Dark rich gold */
       --border: 22 27 38;
       --surface: 12 15 22;
       --muted: 124 128 138;
@@ -80,8 +78,8 @@
       /* Legacy dark mode colors */
       --ink-rgb: 8 10 14;
       --cream-rgb: 255 255 255;
-      --gold-rgb: 210 172 71;
-      --gold-light-rgb: 237 201 103;
+      --gold-rgb: 242 222 122;
+      --gold-light-rgb: 255 240 160;
       --surface-0-rgb: 9 11 16;
       --surface-1-rgb: 12 15 22;
       --surface-2-rgb: 16 20 28;
@@ -331,19 +329,51 @@
     color-scheme: light;
     --background: 255 255 255;
     --foreground: 20 20 20;
-    --primary: 174 134 37;
-    --primary-light: 210 172 71;
-    --accent: 174 134 37;
-    --accent-light: 210 172 71;
-    --accent-dark: 119 94 45;
+    --primary: 174 124 43;
+    --primary-light: 242 222 122;
+    --accent: 174 124 43;
+    --accent-light: 242 222 122;
+    --accent-dark: 139 99 35;
     --border: 226 232 240;
     --surface: 248 250 252;
     --muted: 120 120 120;
     --muted-light: 226 232 240;
-    --gold-rgb: 174 134 37;
-    --gold-light-rgb: 210 172 71;
+    --gold-rgb: 174 124 43;
+    --gold-light-rgb: 242 222 122;
     --ink-rgb: 20 20 20;
     --cream-rgb: 255 255 255;
+  }
+  
+  html.light body {
+    background: linear-gradient(135deg, rgb(255 255 255), rgb(248 250 252));
+    color: rgb(var(--foreground));
+  }
+  
+  /* Dark mode explicit */
+  html.dark {
+    color-scheme: dark;
+    --background: 8 10 14;
+    --foreground: 255 255 255;
+    --primary: 242 222 122;
+    --primary-light: 255 240 160;
+    --accent: 242 222 122;
+    --accent-light: 255 240 160;
+    --accent-dark: 174 124 43;
+    --border: 22 27 38;
+    --surface: 12 15 22;
+    --muted: 124 128 138;
+    --muted-light: 22 27 38;
+    --gold-rgb: 242 222 122;
+    --gold-light-rgb: 255 240 160;
+    --ink-rgb: 8 10 14;
+    --cream-rgb: 255 255 255;
+  }
+  
+  html.dark body {
+    background:
+      radial-gradient(120% 120% at 50% -20%, rgb(242 222 122 / 0.08), transparent 55%),
+      linear-gradient(180deg, rgb(var(--surface)), rgb(var(--background)));
+    color: rgb(var(--foreground));
   }
   
   html.light body {
