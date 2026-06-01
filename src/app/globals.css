@@ -30,25 +30,32 @@
 
   :root {
     color-scheme: light;
+    /* Golden palette - #AE8625, #D2AC47, #EDC967, #F7EF8A */
+    --gold-dark: 174 134 37;      /* #AE8625 - Dark gold for light mode */
+    --gold-medium: 210 172 71;    /* #D2AC47 - Medium gold */
+    --gold-bright: 237 201 103;   /* #EDC967 - Bright gold for dark mode */
+    --gold-light: 247 239 138;    /* #F7EF8A - Light gold */
+    
+    /* Light mode */
     --background: 255 255 255;
-    --foreground: 15 23 43;
-    --primary: 20 71 230;
-    --primary-light: 59 130 246;
-    --accent: 196 164 88;
-    --accent-light: 224 195 129;
+    --foreground: 20 20 20;
+    --primary: 174 134 37;        /* Dark gold for light mode */
+    --primary-light: 210 172 71;  /* Medium gold */
+    --accent: 174 134 37;         /* Dark gold accent for light mode */
+    --accent-light: 210 172 71;   /* Medium gold */
     --accent-dark: 119 94 45;
     --border: 226 232 240;
     --surface: 248 250 252;
-    --muted: 148 163 184;
+    --muted: 120 120 120;
     --muted-light: 226 232 240;
     
     /* Legacy color vars for component compatibility */
-    --gold-rgb: 196 164 88;
-    --gold-light-rgb: 224 195 129;
+    --gold-rgb: 174 134 37;
+    --gold-light-rgb: 210 172 71;
     --gold-dark-rgb: 119 94 45;
-    --ink-rgb: 15 23 43;
+    --ink-rgb: 20 20 20;
     --cream-rgb: 255 255 255;
-    --muted-rgb: 148 163 184;
+    --muted-rgb: 120 120 120;
     --surface-0-rgb: 248 250 252;
     --surface-1-rgb: 241 245 249;
     --surface-2-rgb: 226 232 240;
@@ -57,13 +64,14 @@
 
   @media (prefers-color-scheme: dark) {
     :root {
+      /* Dark mode - bright gold on black */
       --background: 8 10 14;
-      --foreground: 233 230 222;
-      --primary: 196 164 88;
-      --primary-light: 224 195 129;
-      --accent: 196 164 88;
-      --accent-light: 224 195 129;
-      --accent-dark: 119 94 45;
+      --foreground: 255 255 255;
+      --primary: 237 201 103;      /* Bright gold for dark mode */
+      --primary-light: 247 239 138;
+      --accent: 210 172 71;        /* Medium gold */
+      --accent-light: 237 201 103; /* Bright gold */
+      --accent-dark: 174 134 37;   /* Dark gold */
       --border: 22 27 38;
       --surface: 12 15 22;
       --muted: 124 128 138;
@@ -71,7 +79,9 @@
       
       /* Legacy dark mode colors */
       --ink-rgb: 8 10 14;
-      --cream-rgb: 233 230 222;
+      --cream-rgb: 255 255 255;
+      --gold-rgb: 210 172 71;
+      --gold-light-rgb: 237 201 103;
       --surface-0-rgb: 9 11 16;
       --surface-1-rgb: 12 15 22;
       --surface-2-rgb: 16 20 28;
@@ -320,42 +330,89 @@
   html.light {
     color-scheme: light;
     --background: 255 255 255;
-    --foreground: 15 23 43;
-    --primary: 20 71 230;
-    --primary-light: 59 130 246;
-    --accent: 196 164 88;
-    --accent-light: 224 195 129;
+    --foreground: 20 20 20;
+    --primary: 174 134 37;
+    --primary-light: 210 172 71;
+    --accent: 174 134 37;
+    --accent-light: 210 172 71;
     --accent-dark: 119 94 45;
     --border: 226 232 240;
     --surface: 248 250 252;
-    --muted: 148 163 184;
+    --muted: 120 120 120;
     --muted-light: 226 232 240;
+    --gold-rgb: 174 134 37;
+    --gold-light-rgb: 210 172 71;
+    --ink-rgb: 20 20 20;
+    --cream-rgb: 255 255 255;
   }
   
   html.light body {
     background: linear-gradient(135deg, rgb(255 255 255), rgb(248 250 252));
+    color: rgb(var(--foreground));
+  }
+  
+  /* Light mode hero and section overrides */
+  html.light section:first-of-type {
+    background: linear-gradient(135deg, rgb(248 250 252), rgb(255 255 255)) !important;
+  }
+  
+  html.light section:first-of-type > div {
+    background: transparent !important;
+  }
+  
+  html.light .text-cream {
+    color: rgb(var(--foreground)) !important;
+  }
+  
+  html.light .text-cream\/84 {
+    color: rgb(var(--foreground) / 0.84) !important;
+  }
+  
+  html.light .text-cream\/78 {
+    color: rgb(var(--foreground) / 0.78) !important;
+  }
+  
+  html.light .text-cream\/90 {
+    color: rgb(var(--foreground) / 0.9) !important;
+  }
+  
+  html.light .text-gradient-gold {
+    background: linear-gradient(135deg, rgb(174 134 37) 20%, rgb(210 172 71) 55%, rgb(174 134 37) 90%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  /* Override hero gradient backgrounds in light mode */
+  html.light [class*="absolute"][class*="inset-0"] {
+    background: transparent !important;
   }
   
   /* Dark mode explicit */
   html.dark {
     color-scheme: dark;
     --background: 8 10 14;
-    --foreground: 233 230 222;
-    --primary: 196 164 88;
-    --primary-light: 224 195 129;
-    --accent: 196 164 88;
-    --accent-light: 224 195 129;
-    --accent-dark: 119 94 45;
+    --foreground: 255 255 255;
+    --primary: 237 201 103;
+    --primary-light: 247 239 138;
+    --accent: 210 172 71;
+    --accent-light: 237 201 103;
+    --accent-dark: 174 134 37;
     --border: 22 27 38;
     --surface: 12 15 22;
     --muted: 124 128 138;
     --muted-light: 22 27 38;
+    --gold-rgb: 210 172 71;
+    --gold-light-rgb: 237 201 103;
+    --ink-rgb: 8 10 14;
+    --cream-rgb: 255 255 255;
   }
   
   html.dark body {
     background:
-      radial-gradient(120% 120% at 50% -20%, rgb(var(--accent) / 0.08), transparent 55%),
+      radial-gradient(120% 120% at 50% -20%, rgb(237 201 103 / 0.08), transparent 55%),
       linear-gradient(180deg, rgb(var(--surface)), rgb(var(--background)));
+    color: rgb(var(--foreground));
   }
 
   p {
@@ -504,34 +561,31 @@
     }
   }
 
-  #about {
+  /* Default (prefers system) - dark backgrounds */
+  #about, #services, #projects, #ecosystem, #contact {
     scroll-margin-top: 64px;
     padding-top: 6rem;
     padding-bottom: 6rem;
   }
 
-  #services {
-    scroll-margin-top: 64px;
-    padding-top: 6rem;
-    padding-bottom: 6rem;
+  /* Light mode - light backgrounds */
+  html.light #about,
+  html.light #services,
+  html.light #projects,
+  html.light #ecosystem,
+  html.light #contact {
+    background: rgb(var(--background));
+    color: rgb(var(--foreground));
   }
 
-  #projects {
-    scroll-margin-top: 64px;
-    padding-top: 6rem;
-    padding-bottom: 6rem;
-  }
-
-  #ecosystem {
-    scroll-margin-top: 64px;
-    padding-top: 6rem;
-    padding-bottom: 6rem;
-  }
-
-  #contact {
-    scroll-margin-top: 64px;
-    padding-top: 6rem;
-    padding-bottom: 6rem;
+  /* Dark mode - dark backgrounds */
+  html.dark #about,
+  html.dark #services,
+  html.dark #projects,
+  html.dark #ecosystem,
+  html.dark #contact {
+    background: rgb(var(--background));
+    color: rgb(var(--foreground));
   }
 
   #about .about-container {
